@@ -1,0 +1,451 @@
+{
+    "web_filters": [
+     {
+      "id": {
+       "a": "11573145354659187496",
+       "b": "11631669224600077383"
+      },
+      "name": "filter-sni-test",
+      "type": "TYPE_UNSPECIFIED",
+      "target": "TARGET_SNI",
+      "filter_match": [
+       "yahoo.com",
+       "*.google.com",
+       "aviatrix.com",
+       "*.github.com"
+      ]
+     },
+     {
+      "id": {
+       "a": "14928245104871097574",
+       "b": "11977577459993465621"
+      },
+      "name": "filter-sni-test2",
+      "type": "TYPE_UNSPECIFIED",
+      "target": "TARGET_SNI",
+      "filter_match": [
+       "*.foo.com",
+       "network-geographics.com"
+      ]
+     },
+     {
+      "id": {
+       "a": "13390857880490101613",
+       "b": "9607836885550754618"
+      },
+      "name": "filter-url-test",
+      "type": "TYPE_UNSPECIFIED",
+      "target": "TARGET_URL",
+      "filter_match": [
+       "https://yahoo.com/test",
+       "https://google.com/",
+       "https://aviatrix.com/test2"
+      ]
+     }
+    ],
+    "filters": [
+     {
+      "id": {
+       "a": "11857660137499673847",
+       "b": "13603655541779480239"
+      },
+      "cidrs": [
+       {
+        "addr": {
+         "v4": 167858850
+        },
+        "prefix_len": 32
+       }
+      ],
+      "fqdns": []
+     },
+     {
+      "id": {
+       "a": "16598927387781450337",
+       "b": "10427520129841876705"
+      },
+      "cidrs": [
+       {
+        "addr": {
+         "v4": 167917914
+        },
+        "prefix_len": 32
+       }
+      ],
+      "fqdns": []
+     },
+     {
+      "id": {
+       "a": "2943319083006644129",
+       "b": "12088172350522341206"
+      },
+      "cidrs": [
+       {
+        "addr": {
+         "v4": 167858851
+        },
+        "prefix_len": 32
+       },
+       {
+        "addr": {
+         "v4": 167858850
+        },
+        "prefix_len": 32
+       }
+      ],
+      "fqdns": []
+     },
+     {
+      "id": {
+       "a": "2121727585539343233",
+       "b": "13790429357605610247"
+      },
+      "cidrs": [
+       {
+        "addr": {
+         "v4": 167903232
+        },
+        "prefix_len": 16
+       },
+       {
+        "addr": {
+         "v4": 167837696
+        },
+        "prefix_len": 16
+       }
+      ],
+      "fqdns": []
+     }
+    ],
+    "policies": [
+     {
+      "id": {
+       "a": "11828068427654778845",
+       "b": "13655412897838382517"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [
+       {
+        "web_filter_list": [
+         {
+          "a": "14928245104871097574",
+          "b": "11977577459993465621"
+         }
+        ]
+       }
+      ],
+      "port_ranges": [
+       {
+        "lo": 80,
+        "hi": 80
+       }
+      ],
+      "protocol": "TCP",
+      "action": "PERMIT",
+      "decryption_allowed": false,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "APP_UNSPECIFIED"
+     },
+     {
+      "id": {
+       "a": "6410705922635877365",
+       "b": "12335562460678745664"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [
+       {
+        "web_filter_list": [
+         {
+          "a": "13390857880490101613",
+          "b": "9607836885550754618"
+         }
+        ]
+       }
+      ],
+      "port_ranges": [
+       {
+        "lo": 80,
+        "hi": 80
+       }
+      ],
+      "protocol": "TCP",
+      "action": "PERMIT",
+      "decryption_allowed": false,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "APP_UNSPECIFIED"
+     },
+     {
+      "id": {
+       "a": "9653359137356205499",
+       "b": "10100342088580073738"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [],
+      "port_ranges": [
+       {
+        "lo": 80,
+        "hi": 80
+       }
+      ],
+      "protocol": "TCP",
+      "action": "DENY",
+      "decryption_allowed": false,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "APP_UNSPECIFIED"
+     },
+     {
+      "id": {
+       "a": "3764076106982113902",
+       "b": "12775128745753212750"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [
+       {
+        "web_filter_list": [
+         {
+          "a": "14928245104871097574",
+          "b": "11977577459993465621"
+         }
+        ]
+       }
+      ],
+      "port_ranges": [
+       {
+        "lo": 443,
+        "hi": 443
+       }
+      ],
+      "protocol": "TCP",
+      "action": "DENY",
+      "decryption_allowed": true,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "TLS_REQUIRED"
+     },
+     {
+      "id": {
+       "a": "14943161210721028237",
+       "b": "11188960495199580110"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [
+       {
+        "web_filter_list": [
+         {
+          "a": "13390857880490101613",
+          "b": "9607836885550754618"
+         }
+        ]
+       }
+      ],
+      "port_ranges": [
+       {
+        "lo": 443,
+        "hi": 443
+       }
+      ],
+      "protocol": "TCP",
+      "action": "PERMIT",
+      "decryption_allowed": true,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "TLS_REQUIRED"
+     },
+     {
+      "id": {
+       "a": "17834375904944408020",
+       "b": "13063152365985692207"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [
+       {
+        "web_filter_list": [
+         {
+          "a": "11573145354659187496",
+          "b": "11631669224600077383"
+         }
+        ]
+       }
+      ],
+      "port_ranges": [
+       {
+        "lo": 443,
+        "hi": 443
+       }
+      ],
+      "protocol": "TCP",
+      "action": "PERMIT",
+      "decryption_allowed": true,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "TLS_REQUIRED"
+     },
+     {
+      "id": {
+       "a": "6796208347563577099",
+       "b": "10137280459967609472"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [],
+      "port_ranges": [
+       {
+        "lo": 443,
+        "hi": 443
+       }
+      ],
+      "protocol": "TCP",
+      "action": "DENY",
+      "decryption_allowed": true,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "APP_UNSPECIFIED"
+     },
+     {
+      "id": {
+       "a": "292127853411584270",
+       "b": "12688436159954087515"
+      },
+      "src_filters": [
+       {
+        "a": "11857660137499673847",
+        "b": "13603655541779480239"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "16598927387781450337",
+        "b": "10427520129841876705"
+       }
+      ],
+      "web_filter_lists": [],
+      "port_ranges": [],
+      "protocol": "PROTOCOL_UNSPECIFIED",
+      "action": "PERMIT",
+      "decryption_allowed": false,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "APP_UNSPECIFIED"
+     },
+     {
+      "id": {
+       "a": "4442387576226660903",
+       "b": "11119345813591189141"
+      },
+      "src_filters": [
+       {
+        "a": "2943319083006644129",
+        "b": "12088172350522341206"
+       },
+       {
+        "a": "2121727585539343233",
+        "b": "13790429357605610247"
+       }
+      ],
+      "dst_filters": [
+       {
+        "a": "2121727585539343233",
+        "b": "13790429357605610247"
+       }
+      ],
+      "web_filter_lists": [],
+      "port_ranges": [],
+      "protocol": "PROTOCOL_UNSPECIFIED",
+      "action": "DENY",
+      "decryption_allowed": false,
+      "log": false,
+      "priority": 0,
+      "watch": false,
+      "flow_app_requirement": "APP_UNSPECIFIED"
+     }
+    ]
+   }
+   
+   

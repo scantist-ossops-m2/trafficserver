@@ -1,0 +1,4 @@
+add_atsplugin(avx_certifier avx_certifier.cc)
+
+target_link_libraries(avx_certifier)
+verify_global_plugin(avx_certifier)

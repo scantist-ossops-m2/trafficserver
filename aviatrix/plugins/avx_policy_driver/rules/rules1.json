@@ -1,0 +1,30 @@
+{
+    "web_filters": [
+        {
+            "name": "",
+            "type": "TYPE_UNSPECIFIED",
+            "target": "TARGET_UNSPECIFIED",
+            "filter_match": []
+        }
+    ],
+    "filters": [
+        {
+            "cidrs": [],
+            "fqdns": []
+        }
+    ],
+    "policies": [
+        {
+         "src_filters": [],
+         "dst_filters": [],
+         "web_filter_lists": [],
+         "port_ranges": [],
+         "protocol": "TCP",
+         "action": "DENY",
+         "encryption_allowed": true,
+         "log": true,
+         "priority": 5,
+         "watch": false
+        }
+       ]
+}

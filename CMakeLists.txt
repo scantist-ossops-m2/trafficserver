@@ -625,6 +625,8 @@ add_subdirectory(plugins)
 # set up auto options for experimental plugins
 include(ExperimentalPlugins)
 
+add_subdirectory(aviatrix/plugins)
+
 add_subdirectory(configs)
 if(ENABLE_EXAMPLE)
   add_subdirectory(example)
@@ -677,6 +679,7 @@ add_clang_format_target(include)
 add_clang_format_target(plugins)
 add_clang_format_target(tools)
 add_clang_format_target(tests)
+add_clang_format_target(aviatrix)
 
 add_custom_target(
   clang-format

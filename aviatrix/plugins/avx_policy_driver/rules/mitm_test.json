@@ -1,0 +1,64 @@
+{
+    "web_filters": [],
+    "filters": [
+     {
+      "id": {
+       "a": "1227538073995136577",
+       "b": "11244872765655294467"
+      },
+      "cidrs": [
+       {
+        "addr": {
+         "v4": 168493056
+        },
+        "prefix_len": 16
+       }
+      ],
+      "fqdns": []
+     },
+     {
+      "id": {
+       "a": "5646710414998389048",
+       "b": "11606242933273799987"
+      },
+      "cidrs": [
+       {
+        "addr": {
+         "v4": 168558592
+        },
+        "prefix_len": 16
+       }
+      ],
+      "fqdns": []
+     }
+    ],
+    "policies": [
+    {
+     "id": {
+      "a": "17049098458355221748",
+      "b": "11486844873440621944"
+     },
+     "src_filters": [
+      {
+       "a": "1227538073995136577",
+       "b": "11244872765655294467"
+      }
+     ],
+     "dst_filters": [
+      {
+       "a": "5646710414998389048",
+       "b": "11606242933273799987"
+      }
+     ],
+     "web_filter_lists": [],
+     "port_ranges": [],
+     "protocol": "PROTOCOL_UNSPECIFIED",
+     "action": "INTRUSION_DETECTION",
+     "decryption_allowed": true,
+     "log": true,
+     "priority": 0,
+     "watch": true,
+     "flow_app_requirement": "APP_UNSPECIFIED"
+    }
+   ]
+  }
