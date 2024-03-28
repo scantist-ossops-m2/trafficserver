@@ -1,0 +1,3 @@
+add_subdirectory(avx_tee_decrypt)
+add_subdirectory(avx_certifier)
+add_subdirectory(avx_policy_driver)
