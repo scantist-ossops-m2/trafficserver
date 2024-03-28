@@ -1,0 +1,11 @@
+/var/log/tslogs/access.log /var/log/tslogs/diags.log {
+        su ats-user ats-user
+        rotate 12
+	daily
+        size 5M
+        missingok
+        notifempty
+        compress
+        copytruncate
+}
+

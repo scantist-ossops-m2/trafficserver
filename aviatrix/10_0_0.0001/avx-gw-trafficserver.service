@@ -1,0 +1,18 @@
+[Unit]
+Description=Service that runs the trafficserver
+
+
+[Service]
+Type=simple
+User=ats-user
+ExecStart=-/opt/ats/ats_10.0.0/bin/traffic_server --bind_stdout /var/log/tslogs/traffic.out --bind_stderr /var/log/tslogs/traffic.out
+Restart=on-failure
+RestartSec=5s
+LimitNOFILE=1000000
+PIDFile=/opt/ats/ats_10.0.0/var/trafficserver/server.lock
+TimeoutStopSec=5s
+#ExecReload=@exp_bindir@/traffic_ctl config reload
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,61 @@
+FROM  --platform=linux/amd64 ubuntu:22.04 AS build-stage
+ENV PATH="/root/.local/bin:${PATH}"
+ENV PKG_CONFIG_PATH="/root/.local/lib/pkgconfig"
+ENV ATSPATH_SOURCE=.
+ENV ATSPATH=/opt/ats/ats_9.1.3
+ENV DEB=ats_9.1.3
+
+ENV ARTIFACTS_SOURCE=aviatrix/build
+ENV ARTIFACTS=/app/build/
+
+ENV OPENSSL=/opt/ssl/openssl_1.1.1
+
+RUN echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > \
+    /etc/apt/apt.conf.d/keep-cache
+
+RUN  \
+	apt update && \
+	apt install -y autoconf \
+	automake \
+	libtool \
+	pkg-config \
+	libmodule-install-perl \
+	gcc \
+	g++ \
+	zlib1g-dev \
+	libssl-dev \
+	libcap-dev \
+	libhwloc-dev \
+	libncurses5-dev \
+	libcurl4-openssl-dev \
+	flex \
+	make \
+	patchelf \
+    iproute2 \
+	less \
+	inetutils-ping \
+	screen \
+	nginx \
+	curl \
+	wget \
+	git
+
+RUN --mount=type=bind,rw,source=.,target=/app/thirdparty-trafficserver \
+    --mount=type=bind,rw,source=aviatrix/build/u22/debs,target=/app/build \
+	cd / ; \
+	tar xvzf /app/build/buildtools.tgz
+
+RUN --mount=type=bind,rw,source=.,target=/app/thirdparty-trafficserver \
+    --mount=type=bind,rw,source=aviatrix/build/u22/debs,target=/app/build \
+    dpkg -i /app/build/openssl_1.1.1.deb && \
+	echo $PATH && \
+    patchelf --set-rpath $OPENSSL/lib $OPENSSL/bin/openssl
+
+SHELL ["/bin/bash", "-c"]
+RUN echo > /test
+RUN useradd -ms /bin/bash -g root -G sudo ubuntu
+RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/app/build/.bash_history" \
+    && echo "$SNIPPET" >> "/root/.bashrc"
+
+
+CMD ["/bin/bash"]

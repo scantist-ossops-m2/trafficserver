@@ -1,0 +1,51 @@
+
+
+FROM  --platform=linux/amd64 ubuntu:22.04 AS build-stage
+
+#RUN --mount=type=bind,source=/home/ubuntu/dockerdir/target,target=/app
+
+#ADD ./target /app
+
+WORKDIR /build
+
+ENV DIR=/opt/ssl/openssl_1.1.1
+
+ENV DEB=openssl_1.1.1
+
+RUN mkdir $DEB && mkdir -p $DEB/opt/ssl && mkdir $DEB/DEBIAN && cd $DEB/DEBIAN && \
+	printf "package: openssldeb\nversion: 1.1.1\nmaintainer: Kasun\narchitecture: all\ndescription: Open SSL 1.1.1\nupstream_version:1.1.1t\n" > control
+
+#RUN echo 'check line' > here.txt
+
+RUN apt update && apt install -y \
+	curl  \ 
+	perl  \
+	ca-certificates \
+	make \
+	gcc  \
+	patchelf \
+    git
+
+#RUN curl -L https://cpanmin.us/ -o cpanm
+
+#RUN chmod +x cpanm
+
+#RUN --mount=type=bind,source=target,target=/app cp /app/cpanm /usr/local/bin/cpanm
+
+RUN git clone -b OpenSSL_1_1_1t https://github.com/openssl/openssl /app/openssl
+
+#WORKDIR /app/openssl
+
+RUN /app/openssl/config --prefix=$DIR --openssldir=$DIR && make -j4 && make -j4 test && make install_sw 
+
+RUN patchelf --set-rpath $DIR/lib $DIR/bin/openssl
+
+RUN mv $DIR /build/$DEB$DIR
+
+WORKDIR /build
+
+RUN dpkg-deb --build $DEB 
+
+FROM scratch AS export-stage
+
+COPY --from=build-stage /build/openssl_1.1.1.deb .

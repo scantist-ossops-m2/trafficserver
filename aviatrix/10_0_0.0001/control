@@ -1,0 +1,6 @@
+Package: ats
+Version: 10.0.0
+Architecture: amd64
+Maintainer: Aviatrix Engineering <AviatrixEngineering@aviatrix.com>
+Description: Aviatrix variant of Apache TrafficServer
+Depends: libunwind8,libnuma1,libcap2-bin

@@ -1,0 +1,37 @@
+
+FROM  --platform=linux/amd64 ubuntu:22.04 AS build-stage
+SHELL ["/bin/bash", "-c"]
+
+WORKDIR /build
+
+
+
+ENV PATH="/root/.local/bin:${PATH}"
+ENV PKG_CONFIG_PATH="/root/.local/lib/pkgconfig"
+ENV libswoc_version=1.5.1
+ENV random=1
+
+
+ENV DIR=
+
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt update && \
+    apt install -y make git g++ gcc sudo zlib1g-dev build-essential autoconf libtool pkg-config lsb-release
+
+COPY aviatrix/build/setup_build_tools*.sh /build
+
+
+RUN  --mount=type=cache,target=/var/cache/apt \ 
+    /build/setup_build_tools_1.sh /build
+
+RUN  /build/setup_build_tools_2.sh /build
+
+RUN ls -l /root/.local/bin
+
+WORKDIR /build
+
+RUN tar cvfz /build/buildtools.tgz /root/.local
+
+FROM scratch AS export-stage
+
+COPY --from=build-stage /build/buildtools.tgz .

@@ -375,6 +375,26 @@
         "CMAKE_CXX_FLAGS_DEBUG": "--coverage",
         "CMAKE_C_FLAGS_DEBUG": "--coverage"
       }
+    },
+    {
+      "name": "aviatrix",
+      "displayName": "Aviatrix",
+      "description": "Aviatrix Presets",
+      "inherits": ["release"],
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "jemalloc_ROOT": "/usr",
+        "ENABLE_LUAJIT": false,
+        "ENABLE_JEMALLOC": true,
+        "ENABLE_MIMALLOC": false,
+        "ENABLE_MALLOC_ALLOCATOR": true,
+	"ENABLE_AUTEST": false,
+        "BUILD_EXPERIMENTAL_PLUGINS": false,
+        "BUILD_REGRESSION_TESTING": false,
+	"CLOUDN_SOURCE_ROOT": "/src/cloudn",
+	"CMAKE_INSTALL_PREFIX": "/opt/ats/ats_10.0.0"
+      }
     }
   ],
   "buildPresets": [

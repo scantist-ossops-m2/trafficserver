@@ -1,0 +1,25 @@
+#!/bin/bash
+
+atsdir='/opt/ats/ats_10.0.0'
+
+#creating log directory and setting permissions
+test -e /var/log/tslogs || mkdir -p /var/log/tslogs
+useradd --shell /usr/sbin/nologin ats-user
+chown ats-user:ats-user /var/log/tslogs
+chmod 775 /var/log/tslogs
+
+#creating trustbundle directory
+mkdir -p $atsdir/certs
+
+#fixing owners and setting permissions
+chown -R ats-user:ats-user $atsdir
+chown root:ats-user $atsdir/etc/local_ca
+chmod 750 $atsdir/etc/local_ca
+chown -R root:ats-user $atsdir/var/local_ca
+chmod -R 770 $atsdir/var/local_ca
+
+#fixing permissions for logrotate conf
+chown root:root /etc/logrotate.d/avx-gw-trafficserver
+chmod 644 /etc/logrotate.d/avx-gw-trafficserver
+
+setcap cap_net_admin,cap_net_raw+eip $atsdir/bin/traffic_server
