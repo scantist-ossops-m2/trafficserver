@@ -437,7 +437,7 @@ UrlRewrite::PerformACLFiltering(HttpTransact::State *s, url_mapping *map)
     for (acl_filter_rule * rp = map->filter; rp; rp = rp->next) {
       bool match = true;
       if (rp->method_restriction_enabled) {
-        if (method_wksidx >= 0 && method_wksidx < HTTP_WKSIDX_METHODS_CNT) {
+        if (method_wksidx != -1) {
           match = rp->standard_method_lookup[method_wksidx];
         }
         else if (!rp->nonstandard_methods.empty()) {
