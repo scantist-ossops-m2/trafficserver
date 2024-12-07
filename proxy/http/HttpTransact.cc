@@ -2759,7 +2759,7 @@ HttpTransact::build_response_from_cache(State* s, HTTPWarningCode warning_code)
           // this late.
           DebugTxn("http_seq", "[HttpTransact::HandleCacheOpenReadHit] Out-of-order Range request - tunneling");
           s->cache_info.action = CACHE_DO_NO_ACTION;
-          if (s->force_dns) {
+          if (s->force_dns || s->dns_info.lookup_success) {
             HandleCacheOpenReadMiss(s); // DNS is already completed no need of doing DNS
           } else {
             TRANSACT_RETURN(DNS_LOOKUP, OSDNSLookup);   // DNS not done before need to be done now as we are connecting to OS
