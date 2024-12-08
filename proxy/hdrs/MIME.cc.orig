@@ -2637,8 +2637,6 @@ mime_parser_parse(MIMEParser *parser, HdrHeap *heap, MIMEHdrImpl *mh, const char
     bool raw_print_field = true;
     if (suffix_count < 2 || *(line_e - 2) != '\r' || *(line_e - 1) != '\n') {
       raw_print_field = false;
-    } else if (parsed.suffix(2) != "\r\n") {
-      raw_print_field = false;
     }
 
     field_name_length  = (int)(field_name_last - field_name_first + 1);
